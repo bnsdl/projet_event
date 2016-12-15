@@ -1,0 +1,68 @@
+<?php
+
+namespace EPSI\EventBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Lieu
+ *
+ * @ORM\Table(name="LIEU")
+ * @ORM\Entity
+ */
+class Lieu
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_lieu", type="string", length=200, nullable=true)
+     */
+    private $nomLieu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=5000, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=252, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code_postal", type="string", length=255, nullable=true)
+     */
+    private $codePostal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=252, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lien_image", type="string", length=250, nullable=true)
+     */
+    private $lienImage;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_lieu", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idLieu;
+
+
+}
+

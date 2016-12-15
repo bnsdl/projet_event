@@ -1,0 +1,130 @@
+<?php
+
+namespace EPSI\EventBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Evenement
+ *
+ * @ORM\Table(name="EVENEMENT", indexes={@ORM\Index(name="FK_EVENEMENT_id_lieu", columns={"id_lieu"})})
+ * @ORM\Entity
+ */
+class Evenement
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_evenement", type="string", length=200, nullable=true)
+     */
+    private $nomEvenement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=5000, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure_debut", type="datetime", nullable=true)
+     */
+    private $heureDebut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure_fin", type="datetime", nullable=true)
+     */
+    private $heureFin;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="prix_evenement", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $prixEvenement;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nb_visite_evenement", type="integer", nullable=true)
+     */
+    private $nbVisiteEvenement;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="est_annule", type="boolean", nullable=true)
+     */
+    private $estAnnule;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lien_image", type="string", length=250, nullable=true)
+     */
+    private $lienImage;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_evenement", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idEvenement;
+
+    /**
+     * @var \EPSI\EventBundle\Entity\Lieu
+     *
+     * @ORM\ManyToOne(targetEntity="EPSI\EventBundle\Entity\Lieu")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_lieu", referencedColumnName="id_lieu")
+     * })
+     */
+    private $idLieu;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="EPSI\EventBundle\Entity\Genre", mappedBy="idEvenement")
+     */
+    private $idGenre;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="EPSI\EventBundle\Entity\Organisateur", mappedBy="idEvenement")
+     */
+    private $idOrganisateur;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="EPSI\EventBundle\Entity\Artiste", inversedBy="idEvenement")
+     * @ORM\JoinTable(name="participer",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="id_evenement", referencedColumnName="id_evenement")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="id_artiste", referencedColumnName="id_artiste")
+     *   }
+     * )
+     */
+    private $idArtiste;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idGenre = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idOrganisateur = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idArtiste = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

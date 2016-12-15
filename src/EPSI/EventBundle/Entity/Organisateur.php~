@@ -1,0 +1,76 @@
+<?php
+
+namespace EPSI\EventBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Organisateur
+ *
+ * @ORM\Table(name="ORGANISATEUR")
+ * @ORM\Entity
+ */
+class Organisateur
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_organisateur", type="string", length=256, nullable=true)
+     */
+    private $nomOrganisateur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_organisateur", type="string", length=5000, nullable=true)
+     */
+    private $descriptionOrganisateur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=200, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lien_image", type="string", length=200, nullable=true)
+     */
+    private $lienImage;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_organisateur", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idOrganisateur;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="EPSI\EventBundle\Entity\Evenement", inversedBy="idOrganisateur")
+     * @ORM\JoinTable(name="organiser",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="id_organisateur", referencedColumnName="id_organisateur")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="id_evenement", referencedColumnName="id_evenement")
+     *   }
+     * )
+     */
+    private $idEvenement;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idEvenement = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

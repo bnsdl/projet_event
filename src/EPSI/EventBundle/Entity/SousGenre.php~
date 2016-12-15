@@ -1,0 +1,50 @@
+<?php
+
+namespace EPSI\EventBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SousGenre
+ *
+ * @ORM\Table(name="SOUS_GENRE", indexes={@ORM\Index(name="FK_SOUS_GENRE_id_genre_GENRE", columns={"id_genre_GENRE"})})
+ * @ORM\Entity
+ */
+class SousGenre
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_sous_genre", type="string", length=100, nullable=true)
+     */
+    private $nomSousGenre;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nb_visite_sous_genre", type="integer", nullable=true)
+     */
+    private $nbVisiteSousGenre;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_genre", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idGenre;
+
+    /**
+     * @var \EPSI\EventBundle\Entity\Genre
+     *
+     * @ORM\ManyToOne(targetEntity="EPSI\EventBundle\Entity\Genre")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_genre_GENRE", referencedColumnName="id_genre")
+     * })
+     */
+    private $idGenreGenre;
+
+
+}
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EPSI\EventBundle\Entity\Evenement" table="EVENEMENT">
+    <indexes>
+      <index name="FK_EVENEMENT_id_lieu" columns="id_lieu"/>
+    </indexes>
+    <id name="idEvenement" type="integer" column="id_evenement">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomEvenement" type="string" column="nom_evenement" length="200" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="5000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="heureDebut" type="datetime" column="heure_debut" nullable="true"/>
+    <field name="heureFin" type="datetime" column="heure_fin" nullable="true"/>
+    <field name="prixEvenement" type="float" column="prix_evenement" precision="10" scale="0" nullable="true"/>
+    <field name="nbVisiteEvenement" type="integer" column="nb_visite_evenement" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="estAnnule" type="boolean" column="est_annule" nullable="true"/>
+    <field name="lienImage" type="string" column="lien_image" length="250" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idLieu" target-entity="Lieu" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_lieu" referenced-column-name="id_lieu"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="idGenre" target-entity="Genre" mapped-by="idEvenement" fetch="LAZY"/>
+    <many-to-many field="idOrganisateur" target-entity="Organisateur" mapped-by="idEvenement" fetch="LAZY"/>
+    <many-to-many field="idArtiste" target-entity="Artiste" inversed-by="idEvenement" fetch="LAZY">
+      <join-table name="participer">
+        <join-columns>
+          <join-column name="id_evenement" referenced-column-name="id_evenement"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="id_artiste" referenced-column-name="id_artiste"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>
