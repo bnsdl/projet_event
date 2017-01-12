@@ -1,1 +1,13 @@
 Hello World!
+
+<p>Tous les artistes :</p>
+<ul>
+    {% for artiste in artistes %}
+        <li>{{ artiste.nomArtiste }}</li>
+    {% endfor %}
+</ul>
+
+<p>Artiste par ID :</p>
+
+<li>{{ artisteId.nomArtiste }}</li>
+{#<li>{{ artisteNom.nomArtiste }}</li>#}

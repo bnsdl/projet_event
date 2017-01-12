@@ -3,12 +3,13 @@
 namespace EPSI\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Artiste
  *
  * @ORM\Table(name="ARTISTE")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="EPSI\EventBundle\Repository\ArtisteRepository")
  */
 class Artiste
 {

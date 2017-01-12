@@ -126,5 +126,332 @@ class Evenement
         $this->idArtiste = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-}
 
+    /**
+     * Set nomEvenement
+     *
+     * @param string $nomEvenement
+     *
+     * @return Evenement
+     */
+    public function setNomEvenement($nomEvenement)
+    {
+        $this->nomEvenement = $nomEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get nomEvenement
+     *
+     * @return string
+     */
+    public function getNomEvenement()
+    {
+        return $this->nomEvenement;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Evenement
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set heureDebut
+     *
+     * @param \DateTime $heureDebut
+     *
+     * @return Evenement
+     */
+    public function setHeureDebut($heureDebut)
+    {
+        $this->heureDebut = $heureDebut;
+
+        return $this;
+    }
+
+    /**
+     * Get heureDebut
+     *
+     * @return \DateTime
+     */
+    public function getHeureDebut()
+    {
+        return $this->heureDebut;
+    }
+
+    /**
+     * Set heureFin
+     *
+     * @param \DateTime $heureFin
+     *
+     * @return Evenement
+     */
+    public function setHeureFin($heureFin)
+    {
+        $this->heureFin = $heureFin;
+
+        return $this;
+    }
+
+    /**
+     * Get heureFin
+     *
+     * @return \DateTime
+     */
+    public function getHeureFin()
+    {
+        return $this->heureFin;
+    }
+
+    /**
+     * Set prixEvenement
+     *
+     * @param float $prixEvenement
+     *
+     * @return Evenement
+     */
+    public function setPrixEvenement($prixEvenement)
+    {
+        $this->prixEvenement = $prixEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get prixEvenement
+     *
+     * @return float
+     */
+    public function getPrixEvenement()
+    {
+        return $this->prixEvenement;
+    }
+
+    /**
+     * Set nbVisiteEvenement
+     *
+     * @param integer $nbVisiteEvenement
+     *
+     * @return Evenement
+     */
+    public function setNbVisiteEvenement($nbVisiteEvenement)
+    {
+        $this->nbVisiteEvenement = $nbVisiteEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get nbVisiteEvenement
+     *
+     * @return integer
+     */
+    public function getNbVisiteEvenement()
+    {
+        return $this->nbVisiteEvenement;
+    }
+
+    /**
+     * Set estAnnule
+     *
+     * @param boolean $estAnnule
+     *
+     * @return Evenement
+     */
+    public function setEstAnnule($estAnnule)
+    {
+        $this->estAnnule = $estAnnule;
+
+        return $this;
+    }
+
+    /**
+     * Get estAnnule
+     *
+     * @return boolean
+     */
+    public function getEstAnnule()
+    {
+        return $this->estAnnule;
+    }
+
+    /**
+     * Set lienImage
+     *
+     * @param string $lienImage
+     *
+     * @return Evenement
+     */
+    public function setLienImage($lienImage)
+    {
+        $this->lienImage = $lienImage;
+
+        return $this;
+    }
+
+    /**
+     * Get lienImage
+     *
+     * @return string
+     */
+    public function getLienImage()
+    {
+        return $this->lienImage;
+    }
+
+    /**
+     * Get idEvenement
+     *
+     * @return integer
+     */
+    public function getIdEvenement()
+    {
+        return $this->idEvenement;
+    }
+
+    /**
+     * Set idLieu
+     *
+     * @param \EPSI\EventBundle\Entity\Lieu $idLieu
+     *
+     * @return Evenement
+     */
+    public function setIdLieu(\EPSI\EventBundle\Entity\Lieu $idLieu = null)
+    {
+        $this->idLieu = $idLieu;
+
+        return $this;
+    }
+
+    /**
+     * Get idLieu
+     *
+     * @return \EPSI\EventBundle\Entity\Lieu
+     */
+    public function getIdLieu()
+    {
+        return $this->idLieu;
+    }
+
+    /**
+     * Add idGenre
+     *
+     * @param \EPSI\EventBundle\Entity\Genre $idGenre
+     *
+     * @return Evenement
+     */
+    public function addIdGenre(\EPSI\EventBundle\Entity\Genre $idGenre)
+    {
+        $this->idGenre[] = $idGenre;
+
+        return $this;
+    }
+
+    /**
+     * Remove idGenre
+     *
+     * @param \EPSI\EventBundle\Entity\Genre $idGenre
+     */
+    public function removeIdGenre(\EPSI\EventBundle\Entity\Genre $idGenre)
+    {
+        $this->idGenre->removeElement($idGenre);
+    }
+
+    /**
+     * Get idGenre
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdGenre()
+    {
+        return $this->idGenre;
+    }
+
+    /**
+     * Add idOrganisateur
+     *
+     * @param \EPSI\EventBundle\Entity\Organisateur $idOrganisateur
+     *
+     * @return Evenement
+     */
+    public function addIdOrganisateur(\EPSI\EventBundle\Entity\Organisateur $idOrganisateur)
+    {
+        $this->idOrganisateur[] = $idOrganisateur;
+
+        return $this;
+    }
+
+    /**
+     * Remove idOrganisateur
+     *
+     * @param \EPSI\EventBundle\Entity\Organisateur $idOrganisateur
+     */
+    public function removeIdOrganisateur(\EPSI\EventBundle\Entity\Organisateur $idOrganisateur)
+    {
+        $this->idOrganisateur->removeElement($idOrganisateur);
+    }
+
+    /**
+     * Get idOrganisateur
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdOrganisateur()
+    {
+        return $this->idOrganisateur;
+    }
+
+    /**
+     * Add idArtiste
+     *
+     * @param \EPSI\EventBundle\Entity\Artiste $idArtiste
+     *
+     * @return Evenement
+     */
+    public function addIdArtiste(\EPSI\EventBundle\Entity\Artiste $idArtiste)
+    {
+        $this->idArtiste[] = $idArtiste;
+
+        return $this;
+    }
+
+    /**
+     * Remove idArtiste
+     *
+     * @param \EPSI\EventBundle\Entity\Artiste $idArtiste
+     */
+    public function removeIdArtiste(\EPSI\EventBundle\Entity\Artiste $idArtiste)
+    {
+        $this->idArtiste->removeElement($idArtiste);
+    }
+
+    /**
+     * Get idArtiste
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdArtiste()
+    {
+        return $this->idArtiste;
+    }
+}

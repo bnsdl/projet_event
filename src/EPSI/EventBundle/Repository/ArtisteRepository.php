@@ -12,33 +12,48 @@ namespace EPSI\EventBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use EPSI\EventBundle\Entity\Artiste;
 use EPSI\EventBundle\Entity\Evenement;
-use EPSI\EventBundle\IRepository\IArtisteRepository;
+//use EPSI\EventBundle\IRepository\IArtisteRepository;
 
-class ArtisteRepository extends EntityRepository implements IArtisteRepository
+
+class ArtisteRepository extends EntityRepository
 {
-
-    public function GetAll() : array
+    public function GetAllArtiste() : array
     {
-        // TODO: Implement GetAll() method.
+        return $this
+            ->createQueryBuilder('article')
+            ->getQuery()
+            ->getResult();
     }
 
-    public function GetById(int $artisteId) : Artiste
+    public function GetArtisteById(int $artisteId) : Artiste
     {
-        // TODO: Implement GetById() method.
+        $qb = $this->createQueryBuilder('artiste')
+            ->where('artiste.idArtiste = :id')
+            ->setParameter('id', $artisteId)
+        ;
+        $artiste = $qb->getQuery()->getOneOrNullResult();
+
+        return (null === $artiste) ? new Artiste() : $artiste;
     }
 
-    public function GetByName(string $nomArtiste) : Artiste
+    public function GetArtisteByName(string $nomArtiste) : Artiste
     {
-        // TODO: Implement GetByName() method.
+        $qb = $this->createQueryBuilder('artiste')
+            ->where('artiste.nomArtiste = :nom')
+            ->setParameter('nom', $nomArtiste)
+        ;
+        $artiste = $qb->getQuery()->getOneOrNullResult();
+
+        return (null === $artiste) ? new Artiste() : $artiste;
     }
 
-    public function GetAllEvent(int $artisteId) : array
+    public function GetAllArtistesByEventId(int $eventId) : array
     {
-        // TODO: Implement GetAllEvent() method.
+        // TODO: Implement GetAllArtistesByEventId() method.
     }
 
-    public function GetEventById(int $artisteId, $eventId) : Evenement
+    public function GetEventByArtisteId(int $artisteId, $eventId) : Evenement
     {
-        // TODO: Implement GetEventById() method.
+        // TODO: Implement GetEventByArtisteId() method.
     }
 }

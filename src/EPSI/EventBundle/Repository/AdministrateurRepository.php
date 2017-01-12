@@ -31,8 +31,8 @@ class AdministrateurRepository extends EntityRepository implements IAdministrate
         // TODO: Implement Update() method.
     }
 
-    public function GetAll() : array
+    public function GetAllAdministrateur() : array
     {
-        // TODO: Implement GetAll() method.
+        // TODO: Implement GetAllAdministrateur() method.
     }
 }

@@ -51,5 +51,72 @@ class Genre
         $this->idEvenement = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-}
 
+    /**
+     * Set nomGenre
+     *
+     * @param string $nomGenre
+     *
+     * @return Genre
+     */
+    public function setNomGenre($nomGenre)
+    {
+        $this->nomGenre = $nomGenre;
+
+        return $this;
+    }
+
+    /**
+     * Get nomGenre
+     *
+     * @return string
+     */
+    public function getNomGenre()
+    {
+        return $this->nomGenre;
+    }
+
+    /**
+     * Get idGenre
+     *
+     * @return integer
+     */
+    public function getIdGenre()
+    {
+        return $this->idGenre;
+    }
+
+    /**
+     * Add idEvenement
+     *
+     * @param \EPSI\EventBundle\Entity\Evenement $idEvenement
+     *
+     * @return Genre
+     */
+    public function addIdEvenement(\EPSI\EventBundle\Entity\Evenement $idEvenement)
+    {
+        $this->idEvenement[] = $idEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Remove idEvenement
+     *
+     * @param \EPSI\EventBundle\Entity\Evenement $idEvenement
+     */
+    public function removeIdEvenement(\EPSI\EventBundle\Entity\Evenement $idEvenement)
+    {
+        $this->idEvenement->removeElement($idEvenement);
+    }
+
+    /**
+     * Get idEvenement
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdEvenement()
+    {
+        return $this->idEvenement;
+    }
+}

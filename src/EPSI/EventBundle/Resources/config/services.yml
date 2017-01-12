@@ -2,3 +2,42 @@ services:
 #    epsi_event.example:
 #        class: EPSI\EventBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+    artisteService:
+        class: EPSI\EventBundle\Manager\ArtisteManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
+    adminService:
+        class: EPSI\EventBundle\Manager\AdministrateurManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
+    commentService:
+        class: EPSI\EventBundle\Manager\CommentaireManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
+    eventService:
+        class: EPSI\EventBundle\Manager\EvenementManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
+    genreService:
+        class: EPSI\EventBundle\Manager\GenreManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
+    lienService:
+        class: EPSI\EventBundle\Manager\LienManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
+    lieuService:
+        class: EPSI\EventBundle\Manager\LieuManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
+    organisateurService:
+        class: EPSI\EventBundle\Manager\OrganisateurManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
+    sousGenreService:
+        class: EPSI\EventBundle\Manager\SousGenreManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
+    TypeLienService:
+        class: EPSI\EventBundle\Manager\TypeLienManager
+        arguments: [ '@doctrine.orm.entity_manager' ]

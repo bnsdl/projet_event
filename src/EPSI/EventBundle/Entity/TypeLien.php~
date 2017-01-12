@@ -29,5 +29,38 @@ class TypeLien
     private $idTypeLien;
 
 
-}
 
+    /**
+     * Set nomTypeLien
+     *
+     * @param string $nomTypeLien
+     *
+     * @return TypeLien
+     */
+    public function setNomTypeLien($nomTypeLien)
+    {
+        $this->nomTypeLien = $nomTypeLien;
+
+        return $this;
+    }
+
+    /**
+     * Get nomTypeLien
+     *
+     * @return string
+     */
+    public function getNomTypeLien()
+    {
+        return $this->nomTypeLien;
+    }
+
+    /**
+     * Get idTypeLien
+     *
+     * @return integer
+     */
+    public function getIdTypeLien()
+    {
+        return $this->idTypeLien;
+    }
+}

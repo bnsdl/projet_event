@@ -64,5 +64,158 @@ class Lieu
     private $idLieu;
 
 
-}
 
+    /**
+     * Set nomLieu
+     *
+     * @param string $nomLieu
+     *
+     * @return Lieu
+     */
+    public function setNomLieu($nomLieu)
+    {
+        $this->nomLieu = $nomLieu;
+
+        return $this;
+    }
+
+    /**
+     * Get nomLieu
+     *
+     * @return string
+     */
+    public function getNomLieu()
+    {
+        return $this->nomLieu;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Lieu
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     *
+     * @return Lieu
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set codePostal
+     *
+     * @param string $codePostal
+     *
+     * @return Lieu
+     */
+    public function setCodePostal($codePostal)
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    /**
+     * Get codePostal
+     *
+     * @return string
+     */
+    public function getCodePostal()
+    {
+        return $this->codePostal;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Lieu
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * Set lienImage
+     *
+     * @param string $lienImage
+     *
+     * @return Lieu
+     */
+    public function setLienImage($lienImage)
+    {
+        $this->lienImage = $lienImage;
+
+        return $this;
+    }
+
+    /**
+     * Get lienImage
+     *
+     * @return string
+     */
+    public function getLienImage()
+    {
+        return $this->lienImage;
+    }
+
+    /**
+     * Get idLieu
+     *
+     * @return integer
+     */
+    public function getIdLieu()
+    {
+        return $this->idLieu;
+    }
+}

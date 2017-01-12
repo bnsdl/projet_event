@@ -39,5 +39,62 @@ class Commentaire
     private $idEvenement;
 
 
-}
 
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Commentaire
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Get idCommentaire
+     *
+     * @return integer
+     */
+    public function getIdCommentaire()
+    {
+        return $this->idCommentaire;
+    }
+
+    /**
+     * Set idEvenement
+     *
+     * @param \EPSI\EventBundle\Entity\Evenement $idEvenement
+     *
+     * @return Commentaire
+     */
+    public function setIdEvenement(\EPSI\EventBundle\Entity\Evenement $idEvenement = null)
+    {
+        $this->idEvenement = $idEvenement;
+
+        return $this;
+    }
+
+    /**
+     * Get idEvenement
+     *
+     * @return \EPSI\EventBundle\Entity\Evenement
+     */
+    public function getIdEvenement()
+    {
+        return $this->idEvenement;
+    }
+}
