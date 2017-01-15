@@ -3,6 +3,7 @@
 namespace EPSI\EventBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
+use EPSI\EventBundle\Entity\Artiste;
 
 class ArtisteManager extends BaseManager
 {
@@ -31,4 +32,10 @@ class ArtisteManager extends BaseManager
     {
         return $this->em->getRepository('EPSIEventBundle:Artiste');
     }
+
+    public function saveArtiste(Artiste $artiste)
+    {
+        $this->persistAndFlush($artiste);
+    }
+
 }

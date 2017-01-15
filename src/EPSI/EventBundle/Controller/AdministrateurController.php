@@ -4,11 +4,12 @@ namespace EPSI\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class HomeController extends Controller
+class AdministrateurController extends Controller
 {
 
     public function indexAction()
     {
-        return $this->render('EPSIEventBundle:Home:index.html.twig');
+        return $this->render('EPSIEventBundle:Admin:index.html.twig');
     }
+
 }

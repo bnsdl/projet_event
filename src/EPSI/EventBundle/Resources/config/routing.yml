@@ -1,3 +1,24 @@
 epsi_event_homepage:
     path:     /
-    defaults: { _controller: EPSIEventBundle:Default:index }
+    defaults: { _controller: EPSIEventBundle:Home:index }
+
+epsi_event_addEvent:
+    path:     /event/new
+    defaults: { _controller: EPSIEventBundle:Evenement:newEvent }
+
+epsi_event_listArtiste:
+    path:     /artiste
+    defaults: { _controller: EPSIEventBundle:Artiste:listArtiste }
+
+epsi_event_addArtiste:
+    path:     /artiste/new
+    defaults: { _controller: EPSIEventBundle:Artiste:newArtiste }
+
+epsi_event_artiste:
+    path:     /artiste/{id}
+    defaults: { _controller: EPSIEventBundle:Artiste:artiste }
+
+epsi_event_admin:
+    path:     /admin
+    defaults: { _controller: EPSIEventBundle:Administrateur:index }
+

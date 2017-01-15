@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <p>Liste des artistes :</p>
+    <ul>
+        {% for artiste in artistes %}
+            <p>
+            <li><a href="/artiste/{{ artiste.idArtiste }}">{{ artiste.nomArtiste }}</a></li>
+
+            <br><span>Description : {{ artiste.descriptionArtiste }}</span>
+            <br><span>Nombre de visite : {{ artiste.nbVisiteArtiste }}</span>
+            </p>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
+

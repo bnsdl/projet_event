@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p>{{ artiste.nomArtiste }}</p>
+    {#<img src="{{ artiste.lienImage }}">#}
+    <img src="{{ asset("Images/girafe.jpg") }}" alt="">
+    <p>Description : {{ artiste.descriptionArtiste }}</p>
+    <p>Nombre de visite : {{ artiste.nbVisiteArtiste }}</p>
+
+    <p><a href="/artiste">retour</a></p>
+{% endblock %}
+

@@ -138,6 +138,12 @@ class Artiste
         return $this->nbVisiteArtiste;
     }
 
+//    public function incrementVisit()
+//    {
+//        $this->nbVisiteArtiste = $this->nbVisiteArtiste++;
+//        return $this;
+//    }
+
     /**
      * Set lienImage
      *
