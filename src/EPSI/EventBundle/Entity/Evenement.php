@@ -3,6 +3,7 @@
 namespace EPSI\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Evenement
@@ -115,6 +116,13 @@ class Evenement
      * )
      */
     private $idArtiste;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
+     */
+    private $dateCreation;
 
     /**
      * Constructor
@@ -453,5 +461,21 @@ class Evenement
     public function getIdArtiste()
     {
         return $this->idArtiste;
+    }
+
+    /**
+     * @return datetime
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * @param datetime $dateCreation
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
     }
 }

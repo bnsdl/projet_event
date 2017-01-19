@@ -3,6 +3,7 @@
 namespace EPSI\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -56,6 +57,13 @@ class Artiste
      * @ORM\ManyToMany(targetEntity="EPSI\EventBundle\Entity\Evenement", mappedBy="idArtiste")
      */
     private $idEvenement;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
+     */
+    private $dateCreation;
 
     /**
      * Constructor
@@ -166,6 +174,30 @@ class Artiste
     public function getLienImage()
     {
         return $this->lienImage;
+    }
+
+    /**
+     * Set lienImage
+     *
+     * @param datetime $dateCreation
+     *
+     * @return Artiste
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return datetime
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
     }
 
     /**

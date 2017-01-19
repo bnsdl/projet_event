@@ -3,10 +3,10 @@
 namespace EPSI\EventBundle\Controller;
 
 
+use DateTime;
+use EPSI\EventBundle\Form\ArtisteType;
 use EPSI\EventBundle\Entity\Artiste;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
 class ArtisteController extends Controller
@@ -18,14 +18,10 @@ class ArtisteController extends Controller
 
         $artiste = new Artiste();
         $artiste->setNbVisiteArtiste(0);
-        $form= $this->createFormBuilder($artiste)
-            ->add('nomArtiste', TextType::class)
-            ->add('descriptionArtiste', TextType::class)
-            ->add('Sauvegarder', SubmitType::class, array('label' => 'Ajout artiste'))
-            ->getForm();
+        $artiste->setDateCreation(new DateTime());
+        $form = $this->createForm(ArtisteType::class, $artiste);
 
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
 
