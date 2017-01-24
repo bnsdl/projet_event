@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
  * Evenement
  *
  * @ORM\Table(name="EVENEMENT", indexes={@ORM\Index(name="FK_EVENEMENT_id_lieu", columns={"id_lieu"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="EPSI\EventBundle\Repository\EvenementRepository")
  */
 class Evenement
 {
@@ -340,11 +340,11 @@ class Evenement
     /**
      * Set idLieu
      *
-     * @param \EPSI\EventBundle\Entity\Lieu $idLieu
+     * @param Lieu $idLieu
      *
      * @return Evenement
      */
-    public function setIdLieu(\EPSI\EventBundle\Entity\Lieu $idLieu = null)
+    public function setIdLieu(Lieu $idLieu = null)
     {
         $this->idLieu = $idLieu;
 
@@ -354,9 +354,9 @@ class Evenement
     /**
      * Get idLieu
      *
-     * @return \EPSI\EventBundle\Entity\Lieu
+     * @return Lieu
      */
-    public function getIdLieu()
+    public function getIdLieu() : Lieu
     {
         return $this->idLieu;
     }
@@ -364,11 +364,11 @@ class Evenement
     /**
      * Add idGenre
      *
-     * @param \EPSI\EventBundle\Entity\Genre $idGenre
+     * @param Genre $idGenre
      *
      * @return Evenement
      */
-    public function addIdGenre(\EPSI\EventBundle\Entity\Genre $idGenre)
+    public function addIdGenre(Genre $idGenre)
     {
         $this->idGenre[] = $idGenre;
 
@@ -378,9 +378,9 @@ class Evenement
     /**
      * Remove idGenre
      *
-     * @param \EPSI\EventBundle\Entity\Genre $idGenre
+     * @param Genre $idGenre
      */
-    public function removeIdGenre(\EPSI\EventBundle\Entity\Genre $idGenre)
+    public function removeIdGenre(Genre $idGenre)
     {
         $this->idGenre->removeElement($idGenre);
     }
@@ -398,11 +398,11 @@ class Evenement
     /**
      * Add idOrganisateur
      *
-     * @param \EPSI\EventBundle\Entity\Organisateur $idOrganisateur
+     * @param Organisateur $idOrganisateur
      *
      * @return Evenement
      */
-    public function addIdOrganisateur(\EPSI\EventBundle\Entity\Organisateur $idOrganisateur)
+    public function addIdOrganisateur(Organisateur $idOrganisateur)
     {
         $this->idOrganisateur[] = $idOrganisateur;
 
@@ -412,9 +412,9 @@ class Evenement
     /**
      * Remove idOrganisateur
      *
-     * @param \EPSI\EventBundle\Entity\Organisateur $idOrganisateur
+     * @param Organisateur $idOrganisateur
      */
-    public function removeIdOrganisateur(\EPSI\EventBundle\Entity\Organisateur $idOrganisateur)
+    public function removeIdOrganisateur(Organisateur $idOrganisateur)
     {
         $this->idOrganisateur->removeElement($idOrganisateur);
     }
@@ -432,11 +432,11 @@ class Evenement
     /**
      * Add idArtiste
      *
-     * @param \EPSI\EventBundle\Entity\Artiste $idArtiste
+     * @param Artiste $idArtiste
      *
      * @return Evenement
      */
-    public function addIdArtiste(\EPSI\EventBundle\Entity\Artiste $idArtiste)
+    public function addIdArtiste(Artiste $idArtiste)
     {
         $this->idArtiste[] = $idArtiste;
 
@@ -446,9 +446,9 @@ class Evenement
     /**
      * Remove idArtiste
      *
-     * @param \EPSI\EventBundle\Entity\Artiste $idArtiste
+     * @param Artiste $idArtiste
      */
-    public function removeIdArtiste(\EPSI\EventBundle\Entity\Artiste $idArtiste)
+    public function removeIdArtiste(Artiste $idArtiste)
     {
         $this->idArtiste->removeElement($idArtiste);
     }
@@ -464,15 +464,15 @@ class Evenement
     }
 
     /**
-     * @return datetime
+     * @return dateTime
      */
-    public function getDateCreation()
+    public function getDateCreation() : DateTime
     {
         return $this->dateCreation;
     }
 
     /**
-     * @param datetime $dateCreation
+     * @param dateTime $dateCreation
      */
     public function setDateCreation($dateCreation)
     {

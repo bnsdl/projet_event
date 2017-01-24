@@ -43,8 +43,8 @@ services:
         arguments: [ '@doctrine.orm.entity_manager' ]
 
     app.menu_builder:
-            class: EPSI\EventBundle\Menu\MenuBuilder
-            arguments: ["@knp_menu.factory"]
-            tags:
-                - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
+        class: EPSI\EventBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
                 # The alias is what is used to retrieve the menu

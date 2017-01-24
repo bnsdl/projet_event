@@ -3,12 +3,14 @@
 namespace EPSI\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Lieu
  *
  * @ORM\Table(name="LIEU")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="EPSI\EventBundle\Repository\LieuRepository")
  */
 class Lieu
 {
@@ -55,7 +57,14 @@ class Lieu
     private $lienImage;
 
     /**
-     * @var integer
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
+     */
+    private $dateCreation;
+
+    /**
+     * @var int
      *
      * @ORM\Column(name="id_lieu", type="integer")
      * @ORM\Id
@@ -63,7 +72,12 @@ class Lieu
      */
     private $idLieu;
 
-
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nb_visite_lieu", type="integer", nullable=false)
+     */
+    private $nbVisite;
 
     /**
      * Set nomLieu
@@ -217,5 +231,37 @@ class Lieu
     public function getIdLieu()
     {
         return $this->idLieu;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateCreation(): \DateTime
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * @param \DateTime $dateCreation
+     */
+    public function setDateCreation(\DateTime $dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbVisite(): int
+    {
+        return $this->nbVisite;
+    }
+
+    /**
+     * @param int $nbVisite
+     */
+    public function setNbVisite(int $nbVisite)
+    {
+        $this->nbVisite = $nbVisite;
     }
 }

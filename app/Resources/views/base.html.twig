@@ -23,12 +23,13 @@
             <a class="navbar-brand" href="/">Accueil</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" style="float:right">
                 {#<li class="active"><a href="/">Accueil</a></li>#}
-                <li><a href="/artiste">Artistes</a></li>
-                <li><a href="/admin">Administration</a></li>
+                <li><a href="{{ path('epsi_event_listEvent') }}">Événements</a></li>
+                <li><a href="{{ path('epsi_event_listArtiste') }}">Artistes</a></li>
+                <li><a href="{{ path('epsi_event_listLieu') }}">Lieux</a></li>
+                <li><a href="{{ path('epsi_event_admin') }}">Administration</a></li>
                 {#{{ knp_menu_render('main') }}#}
-
             </ul>
         </div><!--/.nav-collapse -->
     </div>

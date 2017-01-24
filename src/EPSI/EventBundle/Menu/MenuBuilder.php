@@ -11,7 +11,6 @@ class MenuBuilder
     /**
      * @param FactoryInterface $factory
      *
-     * Add any other dependency you need
      */
     public function __construct(FactoryInterface $factory)
     {

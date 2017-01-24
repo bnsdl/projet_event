@@ -146,12 +146,6 @@ class Artiste
         return $this->nbVisiteArtiste;
     }
 
-//    public function incrementVisit()
-//    {
-//        $this->nbVisiteArtiste = $this->nbVisiteArtiste++;
-//        return $this;
-//    }
-
     /**
      * Set lienImage
      *
@@ -179,7 +173,7 @@ class Artiste
     /**
      * Set lienImage
      *
-     * @param datetime $dateCreation
+     * @param dateTime $dateCreation
      *
      * @return Artiste
      */
@@ -193,9 +187,9 @@ class Artiste
     /**
      * Get dateCreation
      *
-     * @return datetime
+     * @return dateTime
      */
-    public function getDateCreation()
+    public function getDateCreation() : DateTime
     {
         return $this->dateCreation;
     }

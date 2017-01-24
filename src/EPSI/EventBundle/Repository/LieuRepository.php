@@ -1,32 +1,32 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: benoitdelboe
- * Date: 15/12/2016
- * Time: 14:20
- */
-
 namespace EPSI\EventBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use EPSI\EventBundle\Entity\Lieu;
-use EPSI\EventBundle\IRepository\ILieuRepository;
 
-class LieuRepository extends EntityRepository implements ILieuRepository
+class LieuRepository extends EntityRepository
 {
 
-    public function GetAllLieu() : array
+    public function GetAllLieux() : array
     {
-        // TODO: Implement GetAllLieu() method.
+        return $this
+            ->createQueryBuilder('lieu')
+            ->getQuery()
+            ->getResult();
     }
 
     public function GetLieuById(int $lieuId) : Lieu
     {
-        // TODO: Implement GetLieuById() method.
-    }
+        $qb = $this->createQueryBuilder('lieu')
+            ->where('lieu.idLieu = :id')
+            ->setParameter('id', $lieuId)
+        ;
+        $lieu = $qb->getQuery()->getOneOrNullResult();
 
-    public function GetAllLieuByVille(string $ville) : array
+        return (null === $lieu) ? new Lieu() : $lieu;    }
+
+    public function GetAllLieuxByVille(string $ville) : array
     {
         // TODO: Implement GetAllLieuByVille() method.
     }

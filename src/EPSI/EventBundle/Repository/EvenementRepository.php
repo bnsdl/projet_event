@@ -1,29 +1,31 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: benoitdelboe
- * Date: 15/12/2016
- * Time: 14:20
- */
 
 namespace EPSI\EventBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use EPSI\EventBundle\Entity\Evenement;
-use EPSI\EventBundle\IRepository\IEvenementRepository;
 
-class EvenementRepository extends EntityRepository implements IEvenementRepository
+class EvenementRepository extends EntityRepository
 {
 
-    public function GetAllEvent() : array
+    public function GetAllEvents() : array
     {
-        // TODO: Implement GetAllEvent() method.
+        return $this
+            ->createQueryBuilder('evenement')
+            ->getQuery()
+            ->getResult();
     }
 
     public function GetEventById(int $eventId) : Evenement
     {
-        // TODO: Implement GetEventById() method.
+        $qb = $this->createQueryBuilder('evenement')
+            ->where('evenement.idEvenement = :id')
+            ->setParameter('id', $eventId)
+        ;
+        $event = $qb->getQuery()->getOneOrNullResult();
+
+        return (null === $event) ? new Evenement() : $event;
     }
 
     public function GetEventByName(string $nomEvent) : Evenement

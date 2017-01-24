@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}
+    Liste des événements :
+{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for event in events %}
+            <p>
+            <li><a href="/event/{{ event.idEvenement }}">{{ event.nomEvenement }}</a></li>
+            <span>Description : {{ event.description }}</span>
+            <br><span>Nombre de visite : {{ event.nbVisiteEvenement }}</span>
+            </p>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
+

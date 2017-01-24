@@ -6,17 +6,37 @@ epsi_event_addEvent:
     path:     /event/new
     defaults: { _controller: EPSIEventBundle:Evenement:newEvent }
 
-epsi_event_listArtiste:
-    path:     /artiste
-    defaults: { _controller: EPSIEventBundle:Artiste:listArtiste }
+epsi_event_listEvent:
+    path:     /event
+    defaults: { _controller: EPSIEventBundle:Evenement:listEvent }
+
+epsi_event_listEvent:
+    path:     /event/{id}
+    defaults: { _controller: EPSIEventBundle:Evenement:event }
 
 epsi_event_addArtiste:
     path:     /artiste/new
     defaults: { _controller: EPSIEventBundle:Artiste:newArtiste }
 
+epsi_event_listArtiste:
+    path:     /artiste
+    defaults: { _controller: EPSIEventBundle:Artiste:listArtiste }
+
 epsi_event_artiste:
     path:     /artiste/{id}
     defaults: { _controller: EPSIEventBundle:Artiste:artiste }
+
+epsi_event_addLieu:
+    path:     /lieu/new
+    defaults: { _controller: EPSIEventBundle:Lieu:newLieu }
+
+epsi_event_listLieu:
+    path:     /lieu
+    defaults: { _controller: EPSIEventBundle:Lieu:listLieu }
+
+epsi_event_lieu:
+    path:     /lieu/{id}
+    defaults: { _controller: EPSIEventBundle:Lieu:lieu }
 
 epsi_event_admin:
     path:     /admin

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}
+    Liste des lieux :
+{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for lieu in lieux %}
+            <p>
+            <li><a href="/lieu/{{ lieu.idLieu }}">{{ lieu.nomLieu }}</a></li>
+            <span>Description : {{ lieu.description }}</span>
+            <br><span>Nombre de visite : {{ lieu.nbVisite }}</span>
+            </p>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
+
