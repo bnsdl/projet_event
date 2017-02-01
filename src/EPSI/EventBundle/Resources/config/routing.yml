@@ -10,7 +10,7 @@ epsi_event_listEvent:
     path:     /event
     defaults: { _controller: EPSIEventBundle:Evenement:listEvent }
 
-epsi_event_listEvent:
+epsi_event_event:
     path:     /event/{id}
     defaults: { _controller: EPSIEventBundle:Evenement:event }
 

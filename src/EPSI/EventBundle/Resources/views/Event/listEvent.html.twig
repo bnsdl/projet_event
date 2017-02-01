@@ -1,19 +1,52 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    Événements
+{% endblock %}
+
 {% block pageTitle %}
     Liste des événements :
 {% endblock %}
 
 {% block body %}
-    <ul>
-        {% for event in events %}
-            <p>
-            <li><a href="/event/{{ event.idEvenement }}">{{ event.nomEvenement }}</a></li>
-            <span>Description : {{ event.description }}</span>
-            <br><span>Nombre de visite : {{ event.nbVisiteEvenement }}</span>
-            </p>
+    {% for event in events %}
+        <div class="container">
+            <div class="col-md-2"></div>
+            <div class="col-md-7 blockEvent">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="imgEvent" src="{{ asset('Images/aziz.jpg') }}" alt="">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <a class="title" href="/event/{{ event.idEvenement }}">{{ event.nomEvenement }}</a>
+                        </div>
+                        <div class="row">
+                            {{ event.description }}
+                        </div>
+                        <div class="row">
+                            <u>Avec</u> :
+                            {% set counter = 1 %}
+                            {% for artiste in event.idArtiste %}
+                                <a href="/artiste/{{ artiste.idArtiste }}">{{ artiste.nomArtiste }}</a>
+                                {% if  event.idArtiste|length  > 1 and counter < event.idArtiste|length %}
+                                    <span>/</span>
+                                {% endif %}
+                                {% set counter = counter + 1 %}
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            <u>Lieu</u> : {{ event.lieu.nomLieu }}
+                        </div>
+                        <div class="row">
+                            Nombre de visite : {{ event.nbVisiteEvenement }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        {% endfor %}
-    </ul>
+
+    {% endfor %}
 {% endblock %}
 

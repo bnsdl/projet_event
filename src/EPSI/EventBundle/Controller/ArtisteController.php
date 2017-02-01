@@ -34,13 +34,10 @@ class ArtisteController extends Controller
         return $this->render('EPSIEventBundle:Artiste:newArtiste.html.twig', array(
             'form' => $form->createView(),
         ));
-
-
     }
 
     public function listArtisteAction()
     {
-
         $artService = $this->get('artisteService');
         $allArtiste = $artService->getArtistes();
 

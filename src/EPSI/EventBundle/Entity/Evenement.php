@@ -82,11 +82,11 @@ class Evenement
      * @var \EPSI\EventBundle\Entity\Lieu
      *
      * @ORM\ManyToOne(targetEntity="EPSI\EventBundle\Entity\Lieu")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_lieu", referencedColumnName="id_lieu")
-     * })
+     *
+     * @ORM\JoinColumn(name="id_lieu", referencedColumnName="id_lieu")
+     *
      */
-    private $idLieu;
+    private $lieu;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -344,21 +344,17 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setIdLieu(Lieu $idLieu = null)
+    public function setLieu(Lieu $idLieu = null)
     {
-        $this->idLieu = $idLieu;
+        $this->lieu = $idLieu;
 
         return $this;
     }
 
-    /**
-     * Get idLieu
-     *
-     * @return Lieu
-     */
-    public function getIdLieu() : Lieu
+
+    public function getLieu()
     {
-        return $this->idLieu;
+        return $this->lieu;
     }
 
     /**

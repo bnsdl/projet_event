@@ -18,10 +18,11 @@ class EvenementController extends Controller
         $event = new Evenement();
         $event->setNbVisiteEvenement(0);
         $event->setDateCreation(new DateTime());
+        $event->setHeureDebut(new DateTime());
+        $event->setHeureFin(new DateTime());
+
         $form= $this->createForm(EventType::class, $event);
-
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -44,6 +45,20 @@ class EvenementController extends Controller
 
         return $this->render('EPSIEventBundle:Event:listEvent.html.twig', array(
                 'events' => $allEvents
+            )
+        );
+    }
+
+    public function eventAction(int $id)
+    {
+        $eventService = $this->get('eventService');
+        $event = $eventService->getEventById($id);
+
+        $event->setNbVisiteEvenement($event->getNbVisiteEvenement()+1);
+        $eventService->saveEvent($event);
+
+        return $this->render('EPSIEventBundle:Event:event.html.twig', array(
+                'event' => $event
             )
         );
     }

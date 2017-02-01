@@ -22,11 +22,22 @@ class EventType extends AbstractType
         $builder
             ->add('nomEvenement', TextType::class)
             ->add('description', TextareaType::class)
-//            ->add('idLieu', EntityType::class, array(
-//                'class' => 'EPSIEventBundle:Lieu',
-//                'label' => 'Lieu'
-//            ))
-            ->add('heureDebut', DateTimeType::class)
+            ->add('lieu', EntityType::class, array(
+                'class' => 'EPSIEventBundle:Lieu',
+                'label' => 'Lieu',
+                'choice_label' => 'nomLieu'
+            ))
+            ->add('idArtiste', EntityType::class, array(
+                'class' => 'EPSIEventBundle:Artiste',
+                'label' => 'Artiste',
+                'choice_label' => 'nomArtiste',
+                'multiple' => true,
+                'expanded' => true
+            ))
+            ->add('heureDebut', DateTimeType::class, array(
+//                'html5' => 'false',
+                'format' => 'dd-MM-yyyy'
+            ))
             ->add('heureFin', DateTimeType::class)
             ->add('prixEvenement', IntegerType::class)
             ->add('Sauvegarder', SubmitType::class, array(
