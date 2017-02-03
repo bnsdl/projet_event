@@ -67,7 +67,7 @@ class Evenement
      *
      * @ORM\Column(name="lien_image", type="string", length=250, nullable=true)
      */
-    private $lienImage;
+    private $image;
 
     /**
      * @var integer
@@ -306,13 +306,13 @@ class Evenement
     /**
      * Set lienImage
      *
-     * @param string $lienImage
+     * @param string $image
      *
      * @return Evenement
      */
-    public function setLienImage($lienImage)
+    public function setImage($image)
     {
-        $this->lienImage = $lienImage;
+        $this->image = $image;
 
         return $this;
     }
@@ -322,9 +322,9 @@ class Evenement
      *
      * @return string
      */
-    public function getLienImage()
+    public function getImage()
     {
-        return $this->lienImage;
+        return $this->image;
     }
 
     /**

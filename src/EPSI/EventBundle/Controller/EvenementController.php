@@ -29,11 +29,33 @@ class EvenementController extends Controller
             $event = $form->getData();
             $eventService->saveEvent($event);
 
-            return $this->redirectToRoute('epsi_event_homepage');
+            $file = $event->getImage();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $event->setImage($fileName);
+
+
+            // ... persist the $product variable or any other work
+
+//            return $this->redirect($this->generateUrl('epsi_event_homepage'));
+
+            return $this->render('EPSIEventBundle:Home:index.html.twig', array(
+                'file' => (string)$fileName
+            ));
         }
 
         return $this->render('EPSIEventBundle:Event:newEvent.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
 
     }
