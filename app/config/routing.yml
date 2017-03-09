@@ -3,5 +3,5 @@ epsi_event:
     prefix:   /
 
 app:
-    resource: "@AppBundle/Controller/"
+    resource: "@EPSIEventBundle/Controller/"
     type:     annotation

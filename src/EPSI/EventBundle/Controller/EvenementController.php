@@ -5,53 +5,40 @@ namespace EPSI\EventBundle\Controller;
 use DateTime;
 use EPSI\EventBundle\Entity\Evenement;
 use EPSI\EventBundle\Form\EventType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class EvenementController extends Controller
 {
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/event/new", name="epsi_event_addEvent")
+     */
     public function newEventAction(Request $request)
     {
         $eventService = $this->get('eventService');
-
         $event = new Evenement();
-        $event->setNbVisiteEvenement(0);
-        $event->setDateCreation(new DateTime());
-        $event->setHeureDebut(new DateTime());
-        $event->setHeureFin(new DateTime());
-
-        $form= $this->createForm(EventType::class, $event);
+        $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $event = $form->getData();
-            $eventService->saveEvent($event);
-
             $file = $event->getImage();
 
-            // Generate a unique name for the file before saving it
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            if ($file) {
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+                $event->setImage($fileName);
+            }
 
-            // Move the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('images_directory'),
-                $fileName
-            );
-
-            // Update the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $event->setImage($fileName);
-
-
-            // ... persist the $product variable or any other work
-
-//            return $this->redirect($this->generateUrl('epsi_event_homepage'));
-
-            return $this->render('EPSIEventBundle:Home:index.html.twig', array(
-                'file' => (string)$fileName
-            ));
+            $eventService->saveEvent($event);
+            return $this->render('EPSIEventBundle:Home:index.html.twig');
         }
 
         return $this->render('EPSIEventBundle:Event:newEvent.html.twig', array(
@@ -60,6 +47,10 @@ class EvenementController extends Controller
 
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/event", name="epsi_event_listEvent")
+     */
     public function listEventAction()
     {
         $eventService = $this->get('eventService');
@@ -71,12 +62,17 @@ class EvenementController extends Controller
         );
     }
 
+    /**
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/event/{id}")
+     */
     public function eventAction(int $id)
     {
         $eventService = $this->get('eventService');
         $event = $eventService->getEventById($id);
 
-        $event->setNbVisiteEvenement($event->getNbVisiteEvenement()+1);
+        $event->increaseNbVisite();
         $eventService->saveEvent($event);
 
         return $this->render('EPSIEventBundle:Event:event.html.twig', array(

@@ -4,6 +4,7 @@ namespace EPSI\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTime;
 
 
 /**
@@ -78,6 +79,17 @@ class Lieu
      * @ORM\Column(name="nb_visite_lieu", type="integer", nullable=false)
      */
     private $nbVisite;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->setNbVisite(0);
+        $this->setDateCreation(new DateTime());
+    }
+
 
     /**
      * Set nomLieu
@@ -263,5 +275,10 @@ class Lieu
     public function setNbVisite(int $nbVisite)
     {
         $this->nbVisite = $nbVisite;
+    }
+
+    public function increaseNbVisite()
+    {
+        $this->nbVisite++;
     }
 }

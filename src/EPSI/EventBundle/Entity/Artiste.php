@@ -3,7 +3,8 @@
 namespace EPSI\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\DateTime;
+//use Symfony\Component\Validator\Constraints\DateTime;
+use DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -71,6 +72,8 @@ class Artiste
     public function __construct()
     {
         $this->idEvenement = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setNbVisiteArtiste(0);
+        $this->setDateCreation(new DateTime());
     }
 
 
@@ -236,5 +239,9 @@ class Artiste
     public function getIdEvenement()
     {
         return $this->idEvenement;
+    }
+
+    public function increaseNbVisite(){
+        $this->nbVisiteArtiste++;
     }
 }

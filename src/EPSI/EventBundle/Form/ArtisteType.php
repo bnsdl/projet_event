@@ -21,6 +21,10 @@ class ArtisteType extends AbstractType
             ->add('Sauvegarder', SubmitType::class, array('label' => 'Ajout artiste'));
     }
 
+    public function checkIfSubmittedAndRedirect(ArtisteType $form, string $redirectPath){
+
+    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
