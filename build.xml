@@ -7,7 +7,7 @@
 
     <target name="build"
             depends="prepare,vendors,parameters,lint,phploc,pdepend,phpcpd,phpmd-ci,phpcs-ci,phpdoc,phpunit,phpcb"/>
-
+    <!--<target name="build" depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox" description=""/>-->
     <target name="build-parallel" depends="prepare,lint,tools-parallel,phpunit,phpcb"/>
 
     <target name="tools-parallel" description="Run tools in parallel">
@@ -137,16 +137,27 @@
         </exec>
     </target>
 
+    <target name="composer" description="Installing composer dependencies">
+        <exec executable="composer" failonerror="true">
+            <arg value="install" />
+            <arg value="--dev" />
+            <arg value="--prefer-dist" />
+            <arg value="--no-progress" />
+
+            <env key="SYMFONY_ENV" value="test"/>
+        </exec>
+    </target>
+
     <target name="vendors" description="Update vendors">
         <exec executable="php" failonerror="true">
-            <arg value="composer.phar" />
+            <arg value="composer.json" />
             <arg value="update" />
         </exec>
     </target>
 
     <target name="parameters" description="Copy parameters">
         <exec executable="cp" failonerror="true">
-            <arg path="app/config/parameters.jenkins.yml" />
+            <arg path="app/config/parameters.yml.dist" />
             <arg path="app/config/parameters.yml" />
         </exec>
     </target>
