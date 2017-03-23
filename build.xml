@@ -63,7 +63,7 @@
     <!--</target>-->
 
     <target name="phploc-ci" depends="prepare" description="Measure project size using PHPLOC and log result in CSV and XML format. Intended for usage within a continuous integration environment.">
-        <exec executable="${toolsdir}phploc">
+        <exec executable="phploc">
             <arg value="--count-tests"/>
             <arg value="--log-csv"/>
             <arg path="${basedir}/app/build/logs/phploc.csv"/>
@@ -83,7 +83,7 @@
 
 
     <target name="pdepend" description="Calculate software metrics using PHP_Depend">
-        <exec executable="${toolsdir}pdepend">
+        <exec executable="pdepend">
             <arg value="--jdepend-xml=${builddir}/logs/jdepend.xml" />
             <arg value="--jdepend-chart=${builddir}/pdepend/dependencies.svg" />
             <arg value="--overview-pyramid=${builddir}/pdepend/overview-pyramid.svg" />
@@ -100,7 +100,7 @@
     </target>
 
     <target name="phpmd-ci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
-        <exec executable="${toolsdir}phpmd">
+        <exec executable="phpmd">
             <arg path="${sourcedir}" />
             <arg value="xml" />
             <arg value="${workspace}/app/phpmd.xml" />
