@@ -4,7 +4,7 @@
     <property name="workspace" value="${basedir}" />
     <property name="sourcedir" value="${basedir}/src" />
     <property name="builddir" value="${workspace}/app/build" />
-    <property name="toolsdir" value="${basedir}/vendor/bin/" />
+    <!--<property name="toolsdir" value="${basedir}/vendor/bin/" />-->
 
     <target name="build"
             depends="prepare,vendors,parameters,lint,phploc-ci,pdepend,phpcpd,phpmd-ci,phpcs-ci"/>
@@ -75,7 +75,7 @@
     </target>
 
     <target name="phpdox" depends="phploc-ci,phpcs-ci,phpmd-ci" description="Generate project documentation using phpDox">
-        <exec executable="${toolsdir}phpdox">
+        <exec executable="phpdox">
             <arg value="--file" />
             <arg value="${basedir}/build/phpdox.xml" />
         </exec>
@@ -83,7 +83,7 @@
 
 
     <target name="pdepend" description="Calculate software metrics using PHP_Depend">
-        <exec executable="${toolsdir}pdepend">
+        <exec executable="pdepend">
             <arg value="--jdepend-xml=${builddir}/logs/jdepend.xml" />
             <arg value="--jdepend-chart=${builddir}/pdepend/dependencies.svg" />
             <arg value="--overview-pyramid=${builddir}/pdepend/overview-pyramid.svg" />
@@ -100,7 +100,7 @@
     <!--</target>-->
 
     <target name="phpmd-ci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
-        <exec executable="${toolsdir}phpmd">
+        <exec executable="phpmd">
             <arg path="${sourcedir}" />
             <arg value="xml" />
             <arg value="${workspace}/app/phpmd.xml" />
@@ -109,15 +109,15 @@
         </exec>
     </target>
 
-    <target name="phpcs" description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
-        <exec executable="${toolsdir}phpcs">
-            <arg value="--standard=Symfony2" />
-            <arg path="${sourcedir}" />
-        </exec>
-    </target>
+    <!--<target name="phpcs" description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">-->
+        <!--<exec executable="phpcs">-->
+            <!--<arg value="&#45;&#45;standard=Symfony2" />-->
+            <!--<arg path="${sourcedir}" />-->
+        <!--</exec>-->
+    <!--</target>-->
 
     <target name="phpcs-ci" description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server">
-        <exec executable="${toolsdir}phpcs" output="/dev/null">
+        <exec executable="phpcs" output="/dev/null">
             <arg value="--report=checkstyle" />
             <arg value="--report-file=${builddir}/logs/checkstyle.xml" />
             <arg value="--standard=Symfony2" />
@@ -126,7 +126,7 @@
     </target>
 
     <target name="phpcpd" description="Find duplicate code using PHPCPD">
-        <exec executable="${toolsdir}phpcpd">
+        <exec executable="phpcpd">
             <arg value="--log-pmd" />
             <arg value="${builddir}/logs/pmd-cpd.xml" />
             <arg path="${sourcedir}" />
