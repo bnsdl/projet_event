@@ -4,7 +4,7 @@
     <property name="workspace" value="${basedir}" />
     <property name="sourcedir" value="${basedir}/src" />
     <property name="builddir" value="${workspace}/app/build" />
-    <property name="toolsdir" value="/event/vendor/bin/" />
+    <property name="toolsdir" value="${basedir}/vendor/bin/" />
 
     <target name="build"
             depends="prepare,vendors,parameters,lint,phploc-ci,pdepend,phpcpd,phpmd-ci,phpcs-ci"/>
@@ -75,7 +75,7 @@
     </target>
 
     <target name="phpdox" depends="phploc-ci,phpcs-ci,phpmd-ci" description="Generate project documentation using phpDox">
-        <exec executable="${toolsdir}phpdox">
+        <exec executable="phpdox">
             <arg value="--file" />
             <arg value="${basedir}/build/phpdox.xml" />
         </exec>
