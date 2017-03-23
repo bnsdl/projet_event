@@ -4,7 +4,7 @@
     <property name="workspace" value="${basedir}" />
     <property name="sourcedir" value="${basedir}/src" />
     <property name="builddir" value="${workspace}/app/build" />
-    <property name="toolsdir" value="/vendor/bin/" />
+    <property name="toolsdir" value="${basedir}/vendor/bin/" />
 
     <target name="build"
             depends="prepare,vendors,parameters,lint,phploc-ci,pdepend,phpcpd,phpmd-ci,phpcs-ci"/>
@@ -63,7 +63,7 @@
     <!--</target>-->
 
     <target name="phploc-ci" depends="prepare" description="Measure project size using PHPLOC and log result in CSV and XML format. Intended for usage within a continuous integration environment.">
-        <exec executable="phploc">
+        <exec executable="${toolsdir}phploc">
             <arg value="--count-tests"/>
             <arg value="--log-csv"/>
             <arg path="${basedir}/app/build/logs/phploc.csv"/>
@@ -75,7 +75,7 @@
     </target>
 
     <target name="phpdox" depends="phploc-ci,phpcs-ci,phpmd-ci" description="Generate project documentation using phpDox">
-        <exec executable="phpdox">
+        <exec executable="${toolsdir}phpdox">
             <arg value="--file" />
             <arg value="${basedir}/build/phpdox.xml" />
         </exec>
@@ -83,7 +83,7 @@
 
 
     <target name="pdepend" description="Calculate software metrics using PHP_Depend">
-        <exec executable="pdepend">
+        <exec executable="${toolsdir}pdepend">
             <arg value="--jdepend-xml=${builddir}/logs/jdepend.xml" />
             <arg value="--jdepend-chart=${builddir}/pdepend/dependencies.svg" />
             <arg value="--overview-pyramid=${builddir}/pdepend/overview-pyramid.svg" />
@@ -91,16 +91,16 @@
         </exec>
     </target>
 
-    <target name="phpmd" description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
-        <exec executable="${toolsdir}phpmd">
-            <arg path="${basedir}/src" />
-            <arg value="text" />
-            <arg value="${workspace}/app/phpmd.xml" />
-        </exec>
-    </target>
+    <!--<target name="phpmd" description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">-->
+        <!--<exec executable="${toolsdir}phpmd">-->
+            <!--<arg path="${basedir}/src" />-->
+            <!--<arg value="text" />-->
+            <!--<arg value="${workspace}/app/phpmd.xml" />-->
+        <!--</exec>-->
+    <!--</target>-->
 
     <target name="phpmd-ci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
-        <exec executable="phpmd">
+        <exec executable="${toolsdir}phpmd">
             <arg path="${sourcedir}" />
             <arg value="xml" />
             <arg value="${workspace}/app/phpmd.xml" />
