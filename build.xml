@@ -4,7 +4,7 @@
     <property name="workspace" value="${basedir}" />
     <property name="sourcedir" value="${basedir}/src" />
     <property name="builddir" value="${workspace}/app/build" />
-    <property name="toolsdir" value="${basedir}/vendor/bin/" />
+    <property name="toolsdir" value="/vendor/bin/" />
 
     <target name="build"
             depends="prepare,vendors,parameters,lint,phploc-ci,pdepend,phpcpd,phpmd-ci,phpcs-ci"/>
