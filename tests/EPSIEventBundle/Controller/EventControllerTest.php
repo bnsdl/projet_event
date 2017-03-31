@@ -5,8 +5,8 @@ use \Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class EventControllerTest extends WebTestCase
 {
-    public function testListEvent() {
-
+    public function testListEvent()
+    {
         $client = static::createClient();
         $crawler = $client->request('GET', '/event');
 
@@ -23,7 +23,7 @@ class EventControllerTest extends WebTestCase
 //
 //        $form = $crawler->selectButton("event_Sauvegarder")->form();
 //
-//        $form['event[nomEvenement]'] = 'PhpUnitEvent';
+////        $form['event[nomEvenement]'] = 'PhpUnitEvent';
 ////        $form['description'] = 'Event avec phpUnit !';
 //
 //        $crawler = $client->submit($form);
