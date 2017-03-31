@@ -7,7 +7,7 @@
     <property name="toolsdir" value="${basedir}/vendor/bin/" />
 
     <target name="build"
-            depends="prepare,vendors,parameters,composer,lint,phploc-ci,pdepend,phpdoc, phpcpd,phpmd-ci,phpcs-ci, phpunit"/>
+            depends="prepare,vendors,parameters,lint,phploc-ci,pdepend,phpdoc, phpcpd,phpmd-ci,phpcs-ci, phpunit"/>
     <!--<target name="build" depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox" description=""/>-->
     <target name="build-parallel" depends="prepare,lint,tools-parallel"/>
 
@@ -43,7 +43,7 @@
     <target name="composer" description="Installing composer dependencies">
         <exec executable="composer" failonerror="true">
             <arg value="install" />
-            <arg value="--dev" />
+            <!--<arg value="&#45;&#45;dev" />-->
             <!--<arg value="&#45;&#45;prefer-dist" />-->
             <!--<arg value="&#45;&#45;no-progress" />-->
 
