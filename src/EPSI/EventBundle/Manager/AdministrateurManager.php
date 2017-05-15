@@ -3,6 +3,7 @@
 namespace EPSI\EventBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
+use EPSI\EventBundle\Entity\Administrateur;
 
 class AdministrateurManager extends BaseManager
 {
@@ -30,5 +31,10 @@ class AdministrateurManager extends BaseManager
     public function getRepository()
     {
         return $this->em->getRepository('EPSIEventBundle:Administrateur');
+    }
+
+    public function saveAdmin(Administrateur $admin)
+    {
+        $this->persistAndFlush($admin);
     }
 }

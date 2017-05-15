@@ -13,6 +13,9 @@
         <div class="container">
             <div class="col-md-2"></div>
             <div class="col-md-7 blockEvent">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="...">Delete</a>
+                {% endif %}
                 <div class="row">
                     <div class="col-md-3">
                         <img class="imgEvent" src="{{ asset('Images/' ~ event.image) }}" alt="">
@@ -45,7 +48,6 @@
                 </div>
             </div>
         </div>
-
 
     {% endfor %}
 {% endblock %}

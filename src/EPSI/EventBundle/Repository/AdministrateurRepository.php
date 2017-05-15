@@ -11,14 +11,19 @@ namespace EPSI\EventBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use EPSI\EventBundle\Entity\Administrateur;
-use EPSI\EventBundle\IRepository\IAdministrateurRepository;
 
-class AdministrateurRepository extends EntityRepository implements IAdministrateurRepository
+class AdministrateurRepository extends EntityRepository
 {
 
     public function GetById(int $adminId) : Administrateur
     {
-        // TODO: Implement GetById() method.
+        $qb = $this->createQueryBuilder('administrateur')
+            ->where('administrateur.idAdministrateur = :id')
+            ->setParameter('id', $adminId)
+        ;
+        $admin = $qb->getQuery()->getOneOrNullResult();
+
+        return (null === $admin) ? new Administrateur() : $admin;
     }
 
     public function GetByName(string $username) : Administrateur
