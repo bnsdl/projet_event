@@ -21,9 +21,11 @@ class MenuBuilder
     {
         $menu = $this->factory->createItem('root');
 
-        $menu->addChild('Home', array('route' => 'epsi_event_homepage'));
+        $menu->addChild('Accueil', array('route' => 'epsi_event_homepage'));
+        $menu->addChild('Événements', array('route' => 'epsi_event_listEvent'));
         $menu->addChild('Artistes', array('route' => 'epsi_event_listArtiste'));
         $menu->addChild('Admin', array('route' => 'epsi_event_admin'));
+        $menu->addChild('Lieux', array('route'=>'epsi_event_listLieu'));
 //        $menu->addChild('Evénements', array('route' => 'epsi_event_event'));
         // ... add more children
 
