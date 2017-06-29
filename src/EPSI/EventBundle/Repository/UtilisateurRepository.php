@@ -5,6 +5,7 @@
 namespace EPSI\EventBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use EPSI\EventBundle\Entity\Utilisateur;
 
 /**
  * UtilisateurRepository
@@ -14,4 +15,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class UtilisateurRepository extends EntityRepository
 {
+    public function GetById(int $userId) : Utilisateur
+    {
+        $qb = $this->createQueryBuilder('utilisateur')
+            ->where('utilisateur.id = :id')
+            ->setParameter('id', $userId)
+        ;
+        $user = $qb->getQuery()->getOneOrNullResult();
+
+        return (null === $user) ? new Utilisateur() : $user;
+    }
+
+    public function GetAllUsers() {
+
+        return $this
+            ->createQueryBuilder('utilisateur')
+            ->getQuery()
+            ->getResult();
+    }
 }

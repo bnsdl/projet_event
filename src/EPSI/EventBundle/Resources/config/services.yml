@@ -10,6 +10,10 @@ services:
         class: EPSI\EventBundle\Manager\AdministrateurManager
         arguments: [ '@doctrine.orm.entity_manager' ]
 
+    userService:
+        class: EPSI\EventBundle\Manager\UtilisateurManager
+        arguments: [ '@doctrine.orm.entity_manager' ]
+
     commentService:
         class: EPSI\EventBundle\Manager\CommentaireManager
         arguments: [ '@doctrine.orm.entity_manager' ]

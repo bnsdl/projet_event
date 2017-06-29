@@ -38,6 +38,7 @@ class Utilisateur
 
     /**
      * @var \DateTime
+     *
      */
     private $dateNaissance;
 
