@@ -244,4 +244,10 @@ class Artiste
     public function increaseNbVisite(){
         $this->nbVisiteArtiste++;
     }
+    /**
+     * @var \DateTime
+     */
+    private $datecreation;
+
+
 }

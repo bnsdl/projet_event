@@ -480,4 +480,67 @@ class Evenement
     {
         $this->nbVisiteEvenement++;
     }
+    /**
+     * @var string
+     */
+    private $lienImage;
+
+    /**
+     * @var \DateTime
+     */
+    private $datecreation;
+
+    /**
+     * @var \EPSI\EventBundle\Entity\Lieu
+     */
+    private $idLieu;
+
+
+    /**
+     * Set lienImage
+     *
+     * @param string $lienImage
+     *
+     * @return Evenement
+     */
+    public function setLienImage($lienImage)
+    {
+        $this->lienImage = $lienImage;
+
+        return $this;
+    }
+
+    /**
+     * Get lienImage
+     *
+     * @return string
+     */
+    public function getLienImage()
+    {
+        return $this->lienImage;
+    }
+
+    /**
+     * Set idLieu
+     *
+     * @param \EPSI\EventBundle\Entity\Lieu $idLieu
+     *
+     * @return Evenement
+     */
+    public function setIdLieu(\EPSI\EventBundle\Entity\Lieu $idLieu = null)
+    {
+        $this->idLieu = $idLieu;
+
+        return $this;
+    }
+
+    /**
+     * Get idLieu
+     *
+     * @return \EPSI\EventBundle\Entity\Lieu
+     */
+    public function getIdLieu()
+    {
+        return $this->idLieu;
+    }
 }

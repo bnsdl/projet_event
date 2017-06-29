@@ -128,5 +128,28 @@ class Administrateur implements UserInterface, \Serializable
             $this->password
             ) = unserialize($serialized);
     }
-}
 
+    /**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return Administrateur
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get idAdministrateur
+     *
+     * @return integer
+     */
+    public function getIdAdministrateur()
+    {
+        return $this->idAdministrateur;
+    }
+}

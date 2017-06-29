@@ -3,12 +3,15 @@
 namespace EPSI\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+//use Symfony\Component\Validator\Constraints\DateTime;
+use DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Artiste
  *
  * @ORM\Table(name="ARTISTE")
- * @ORM\Entity(repositoryClass="EPSIEventBundle\Repository\ArtisteRepository")
+ * @ORM\Entity(repositoryClass="EPSI\EventBundle\Repository\ArtisteRepository")
  */
 class Artiste
 {
@@ -57,11 +60,20 @@ class Artiste
     private $idEvenement;
 
     /**
+     * @var datetime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
+     */
+    private $dateCreation;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->idEvenement = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setNbVisiteArtiste(0);
+        $this->setDateCreation(new DateTime());
     }
 
 
@@ -162,6 +174,30 @@ class Artiste
     }
 
     /**
+     * Set lienImage
+     *
+     * @param dateTime $dateCreation
+     *
+     * @return Artiste
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return dateTime
+     */
+    public function getDateCreation() : DateTime
+    {
+        return $this->dateCreation;
+    }
+
+    /**
      * Get idArtiste
      *
      * @return integer
@@ -203,5 +239,9 @@ class Artiste
     public function getIdEvenement()
     {
         return $this->idEvenement;
+    }
+
+    public function increaseNbVisite(){
+        $this->nbVisiteArtiste++;
     }
 }

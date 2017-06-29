@@ -281,4 +281,38 @@ class Lieu
     {
         $this->nbVisite++;
     }
+    /**
+     * @var \DateTime
+     */
+    private $datecreation;
+
+    /**
+     * @var integer
+     */
+    private $nbVisiteLieu;
+
+
+    /**
+     * Set nbVisiteLieu
+     *
+     * @param integer $nbVisiteLieu
+     *
+     * @return Lieu
+     */
+    public function setNbVisiteLieu($nbVisiteLieu)
+    {
+        $this->nbVisiteLieu = $nbVisiteLieu;
+
+        return $this;
+    }
+
+    /**
+     * Get nbVisiteLieu
+     *
+     * @return integer
+     */
+    public function getNbVisiteLieu()
+    {
+        return $this->nbVisiteLieu;
+    }
 }
