@@ -3,15 +3,12 @@
 namespace EPSI\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-//use Symfony\Component\Validator\Constraints\DateTime;
-use DateTime;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Artiste
  *
  * @ORM\Table(name="ARTISTE")
- * @ORM\Entity(repositoryClass="EPSI\EventBundle\Repository\ArtisteRepository")
+ * @ORM\Entity
  */
 class Artiste
 {
@@ -44,6 +41,13 @@ class Artiste
     private $lienImage;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
+     */
+    private $datecreation;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id_artiste", type="integer")
@@ -60,188 +64,12 @@ class Artiste
     private $idEvenement;
 
     /**
-     * @var datetime
-     *
-     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
-     */
-    private $dateCreation;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->idEvenement = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->setNbVisiteArtiste(0);
-        $this->setDateCreation(new DateTime());
     }
 
-
-    /**
-     * Set nomArtiste
-     *
-     * @param string $nomArtiste
-     *
-     * @return Artiste
-     */
-    public function setNomArtiste($nomArtiste)
-    {
-        $this->nomArtiste = $nomArtiste;
-
-        return $this;
-    }
-
-    /**
-     * Get nomArtiste
-     *
-     * @return string
-     */
-    public function getNomArtiste()
-    {
-        return $this->nomArtiste;
-    }
-
-    /**
-     * Set descriptionArtiste
-     *
-     * @param string $descriptionArtiste
-     *
-     * @return Artiste
-     */
-    public function setDescriptionArtiste($descriptionArtiste)
-    {
-        $this->descriptionArtiste = $descriptionArtiste;
-
-        return $this;
-    }
-
-    /**
-     * Get descriptionArtiste
-     *
-     * @return string
-     */
-    public function getDescriptionArtiste()
-    {
-        return $this->descriptionArtiste;
-    }
-
-    /**
-     * Set nbVisiteArtiste
-     *
-     * @param integer $nbVisiteArtiste
-     *
-     * @return Artiste
-     */
-    public function setNbVisiteArtiste($nbVisiteArtiste)
-    {
-        $this->nbVisiteArtiste = $nbVisiteArtiste;
-
-        return $this;
-    }
-
-    /**
-     * Get nbVisiteArtiste
-     *
-     * @return integer
-     */
-    public function getNbVisiteArtiste()
-    {
-        return $this->nbVisiteArtiste;
-    }
-
-    /**
-     * Set lienImage
-     *
-     * @param string $lienImage
-     *
-     * @return Artiste
-     */
-    public function setLienImage($lienImage)
-    {
-        $this->lienImage = $lienImage;
-
-        return $this;
-    }
-
-    /**
-     * Get lienImage
-     *
-     * @return string
-     */
-    public function getLienImage()
-    {
-        return $this->lienImage;
-    }
-
-    /**
-     * Set lienImage
-     *
-     * @param dateTime $dateCreation
-     *
-     * @return Artiste
-     */
-    public function setDateCreation($dateCreation)
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
-    }
-
-    /**
-     * Get dateCreation
-     *
-     * @return dateTime
-     */
-    public function getDateCreation() : DateTime
-    {
-        return $this->dateCreation;
-    }
-
-    /**
-     * Get idArtiste
-     *
-     * @return integer
-     */
-    public function getIdArtiste()
-    {
-        return $this->idArtiste;
-    }
-
-    /**
-     * Add idEvenement
-     *
-     * @param \EPSI\EventBundle\Entity\Evenement $idEvenement
-     *
-     * @return Artiste
-     */
-    public function addIdEvenement(\EPSI\EventBundle\Entity\Evenement $idEvenement)
-    {
-        $this->idEvenement[] = $idEvenement;
-
-        return $this;
-    }
-
-    /**
-     * Remove idEvenement
-     *
-     * @param \EPSI\EventBundle\Entity\Evenement $idEvenement
-     */
-    public function removeIdEvenement(\EPSI\EventBundle\Entity\Evenement $idEvenement)
-    {
-        $this->idEvenement->removeElement($idEvenement);
-    }
-
-    /**
-     * Get idEvenement
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdEvenement()
-    {
-        return $this->idEvenement;
-    }
-
-    public function increaseNbVisite(){
-        $this->nbVisiteArtiste++;
-    }
 }
+

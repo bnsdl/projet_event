@@ -3,14 +3,12 @@
 namespace EPSI\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-//use Symfony\Component\Validator\Constraints\DateTime;
-use DateTime;
 
 /**
  * Evenement
  *
  * @ORM\Table(name="EVENEMENT", indexes={@ORM\Index(name="FK_EVENEMENT_id_lieu", columns={"id_lieu"})})
- * @ORM\Entity(repositoryClass="EPSI\EventBundle\Repository\EvenementRepository")
+ * @ORM\Entity
  */
 class Evenement
 {
@@ -68,7 +66,14 @@ class Evenement
      *
      * @ORM\Column(name="lien_image", type="string", length=250, nullable=true)
      */
-    private $image;
+    private $lienImage;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
+     */
+    private $datecreation;
 
     /**
      * @var integer
@@ -83,18 +88,11 @@ class Evenement
      * @var \EPSI\EventBundle\Entity\Lieu
      *
      * @ORM\ManyToOne(targetEntity="EPSI\EventBundle\Entity\Lieu")
-     *
-     * @ORM\JoinColumn(name="id_lieu", referencedColumnName="id_lieu")
-     *
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_lieu", referencedColumnName="id_lieu")
+     * })
      */
-    private $lieu;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="EPSI\EventBundle\Entity\Genre", mappedBy="idEvenement")
-     */
-    private $idGenre;
+    private $idLieu;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -119,365 +117,21 @@ class Evenement
     private $idArtiste;
 
     /**
-     * @var datetime
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\Column(name="dateCreation", type="datetime", nullable=false)
+     * @ORM\ManyToMany(targetEntity="EPSI\EventBundle\Entity\Genre", mappedBy="idEvenement")
      */
-    private $dateCreation;
+    private $idGenre;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->idGenre = new \Doctrine\Common\Collections\ArrayCollection();
         $this->idOrganisateur = new \Doctrine\Common\Collections\ArrayCollection();
         $this->idArtiste = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->setNbVisiteEvenement(0);
-        $this->setDateCreation(new DateTime());
-        $this->setHeureDebut(new DateTime());
-        $this->setHeureFin(new DateTime());
+        $this->idGenre = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
-    /**
-     * Set nomEvenement
-     *
-     * @param string $nomEvenement
-     *
-     * @return Evenement
-     */
-    public function setNomEvenement($nomEvenement)
-    {
-        $this->nomEvenement = $nomEvenement;
-
-        return $this;
-    }
-
-    /**
-     * Get nomEvenement
-     *
-     * @return string
-     */
-    public function getNomEvenement()
-    {
-        return $this->nomEvenement;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Evenement
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set heureDebut
-     *
-     * @param \DateTime $heureDebut
-     *
-     * @return Evenement
-     */
-    public function setHeureDebut($heureDebut)
-    {
-        $this->heureDebut = $heureDebut;
-
-        return $this;
-    }
-
-    /**
-     * Get heureDebut
-     *
-     * @return \DateTime
-     */
-    public function getHeureDebut()
-    {
-        return $this->heureDebut;
-    }
-
-    /**
-     * Set heureFin
-     *
-     * @param \DateTime $heureFin
-     *
-     * @return Evenement
-     */
-    public function setHeureFin($heureFin)
-    {
-        $this->heureFin = $heureFin;
-
-        return $this;
-    }
-
-    /**
-     * Get heureFin
-     *
-     * @return \DateTime
-     */
-    public function getHeureFin()
-    {
-        return $this->heureFin;
-    }
-
-    /**
-     * Set prixEvenement
-     *
-     * @param float $prixEvenement
-     *
-     * @return Evenement
-     */
-    public function setPrixEvenement($prixEvenement)
-    {
-        $this->prixEvenement = $prixEvenement;
-
-        return $this;
-    }
-
-    /**
-     * Get prixEvenement
-     *
-     * @return float
-     */
-    public function getPrixEvenement()
-    {
-        return $this->prixEvenement;
-    }
-
-    /**
-     * Set nbVisiteEvenement
-     *
-     * @param integer $nbVisiteEvenement
-     *
-     * @return Evenement
-     */
-    public function setNbVisiteEvenement($nbVisiteEvenement)
-    {
-        $this->nbVisiteEvenement = $nbVisiteEvenement;
-
-        return $this;
-    }
-
-    /**
-     * Get nbVisiteEvenement
-     *
-     * @return integer
-     */
-    public function getNbVisiteEvenement()
-    {
-        return $this->nbVisiteEvenement;
-    }
-
-    /**
-     * Set estAnnule
-     *
-     * @param boolean $estAnnule
-     *
-     * @return Evenement
-     */
-    public function setEstAnnule($estAnnule)
-    {
-        $this->estAnnule = $estAnnule;
-
-        return $this;
-    }
-
-    /**
-     * Get estAnnule
-     *
-     * @return boolean
-     */
-    public function getEstAnnule()
-    {
-        return $this->estAnnule;
-    }
-
-    /**
-     * Set lienImage
-     *
-     * @return Evenement
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get lienImage*
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Get idEvenement
-     *
-     * @return integer
-     */
-    public function getIdEvenement()
-    {
-        return $this->idEvenement;
-    }
-
-    /**
-     * Set idLieu
-     *
-     * @param Lieu $idLieu
-     *
-     * @return Evenement
-     */
-    public function setLieu(Lieu $idLieu = null)
-    {
-        $this->lieu = $idLieu;
-
-        return $this;
-    }
-
-
-    public function getLieu()
-    {
-        return $this->lieu;
-    }
-
-    /**
-     * Add idGenre
-     *
-     * @param Genre $idGenre
-     *
-     * @return Evenement
-     */
-    public function addIdGenre(Genre $idGenre)
-    {
-        $this->idGenre[] = $idGenre;
-
-        return $this;
-    }
-
-    /**
-     * Remove idGenre
-     *
-     * @param Genre $idGenre
-     */
-    public function removeIdGenre(Genre $idGenre)
-    {
-        $this->idGenre->removeElement($idGenre);
-    }
-
-    /**
-     * Get idGenre
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdGenre()
-    {
-        return $this->idGenre;
-    }
-
-    /**
-     * Add idOrganisateur
-     *
-     * @param Organisateur $idOrganisateur
-     *
-     * @return Evenement
-     */
-    public function addIdOrganisateur(Organisateur $idOrganisateur)
-    {
-        $this->idOrganisateur[] = $idOrganisateur;
-
-        return $this;
-    }
-
-    /**
-     * Remove idOrganisateur
-     *
-     * @param Organisateur $idOrganisateur
-     */
-    public function removeIdOrganisateur(Organisateur $idOrganisateur)
-    {
-        $this->idOrganisateur->removeElement($idOrganisateur);
-    }
-
-    /**
-     * Get idOrganisateur
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdOrganisateur()
-    {
-        return $this->idOrganisateur;
-    }
-
-    /**
-     * Add idArtiste
-     *
-     * @param Artiste $idArtiste
-     *
-     * @return Evenement
-     */
-    public function addIdArtiste(Artiste $idArtiste)
-    {
-        $this->idArtiste[] = $idArtiste;
-
-        return $this;
-    }
-
-    /**
-     * Remove idArtiste
-     *
-     * @param Artiste $idArtiste
-     */
-    public function removeIdArtiste(Artiste $idArtiste)
-    {
-        $this->idArtiste->removeElement($idArtiste);
-    }
-
-    /**
-     * Get idArtiste
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdArtiste()
-    {
-        return $this->idArtiste;
-    }
-
-    /**
-     * @return dateTime
-     */
-    public function getDateCreation() : DateTime
-    {
-        return $this->dateCreation;
-    }
-
-    /**
-     * @param dateTime $dateCreation
-     */
-    public function setDateCreation($dateCreation)
-    {
-        $this->dateCreation = $dateCreation;
-    }
-
-    public function increaseNbVisite()
-    {
-        $this->nbVisiteEvenement++;
-    }
 }
+
